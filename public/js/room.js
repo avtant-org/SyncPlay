@@ -3,6 +3,7 @@ import { MessageTypes } from './protocol.js';
 import { VideoPlayer } from './player.js';
 import { MediaSourceHandler } from './mediaSource.js';
 import { SyncController } from './sync.js';
+import { SubtitleManager } from './subtitleManager.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Get Room ID and Participant Name from URL
@@ -29,6 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const player = new VideoPlayer(document.getElementById("player"));
     const syncController = new SyncController(player, ws);
     const mediaHandler = new MediaSourceHandler(document.getElementById("video-input"));
+    const subtitleManager = new SubtitleManager(
+        document.getElementById("player"),
+        document.getElementById("subtitle-list"),
+        document.getElementById("subtitle-status"),
+        document.getElementById("subtitle-input")
+    );
     
     let isHost = false;
     let localSessionId = null;
@@ -86,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         player.setSource(url);
+        subtitleManager.handleNewVideo();
         document.getElementById("file-select-overlay").classList.add("hidden");
         
         ws.send(MessageTypes.VIDEO_SELECTED, { videoIdentity: identity });

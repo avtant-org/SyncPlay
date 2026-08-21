@@ -60,6 +60,21 @@
                         <!-- Populated by JS -->
                     </ul>
                 </div>
+
+                <div style="margin-top: 2rem;">
+                    <h4 class="mb-4" style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Subtitles</h4>
+                    
+                    <div id="subtitle-status" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+                        Waiting for video...
+                    </div>
+                    
+                    <ul class="subtitle-list" id="subtitle-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                    
+                    <input type="file" id="subtitle-input" accept=".srt,.vtt,text/vtt,application/x-subrip" class="hidden">
+                    <button class="btn" style="margin-top: 1rem; padding: 0.5rem; font-size: 0.85rem; width: 100%;" onclick="document.getElementById('subtitle-input').click()">Choose subtitle file</button>
+                </div>
             </div>
         </aside>
     </div>
