@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room - SyncPlay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/room.css">
+</head>
+<body>
+    <div class="room-layout">
+        <!-- Video Player Section -->
+        <main class="video-section" id="video-section">
+            <div class="video-container" id="video-container">
+                <video id="player" controls playsinline></video>
+            </div>
+            
+            <!-- File Selection Overlay -->
+            <div class="file-select-overlay" id="file-select-overlay">
+                <div class="card">
+                    <h2 class="mb-4">Select Video</h2>
+                    <p class="mb-4" style="color: var(--text-muted); font-size: 0.9rem;">
+                        Select the local video file. The file is played locally and never uploaded to the server.
+                    </p>
+                    
+                    <div id="host-video-info" class="mb-4 hidden" style="border: 1px solid var(--surface-border); padding: 1rem; border-radius: 6px; background: #000;">
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem;">Host selected:</div>
+                        <div id="host-video-name" style="font-weight: 500; word-break: break-all;">-</div>
+                        <div id="host-video-size" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">-</div>
+                    </div>
+
+                    <input type="file" id="video-input" accept="video/*" class="hidden">
+                    <button class="btn" onclick="document.getElementById('video-input').click()">Choose File</button>
+                    
+                    <div id="video-error" class="mt-4 hidden" style="color: var(--error); font-size: 0.9rem;"></div>
+                </div>
+            </div>
+            
+            <!-- Autoplay overlay -->
+            <div class="file-select-overlay hidden" id="autoplay-overlay" style="background: rgba(0,0,0,0.9); z-index: 20;">
+                <button id="btn-unlock-audio" class="btn" style="max-width: 300px;">Click to unlock synchronized playback</button>
+            </div>
+        </main>
+
+        <!-- Sidebar / Room Info -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Room Details</h3>
+            </div>
+            <div class="sidebar-content">
+                <div class="mb-4">
+                    <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem;">Room ID (Click to copy link)</label>
+                    <div class="room-id-box" id="room-id-display">------</div>
+                </div>
+                
+                <div>
+                    <h4 class="mb-4" style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Participants (<span id="participant-count">1</span>)</h4>
+                    <ul class="participant-list" id="participant-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+    
+    <div id="toast" class="notification-toast"></div>
+
+    <script type="module" src="/js/room.js"></script>
+</body>
+</html>

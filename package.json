@@ -1,0 +1,13 @@
+{
+  "name": "syncplay",
+  "version": "1.0.0",
+  "description": "Synchronized local video watch-together application using Cloudflare Workers",
+  "main": "src/worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
